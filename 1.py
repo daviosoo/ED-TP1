@@ -25,20 +25,17 @@ class SistemaGestionTareas:
                 print(f"Fecha de vencimiento: {tarea.fecha_vencimiento}")
                 print()
 
-def main():
-    sistema = SistemaGestionTareas()
 
-    # Ejemplo de ingreso de tareas
-    tarea1 = Tarea("Completar informe", "Redactar el informe mensual de ventas", datetime.datetime(2024, 2, 20))
-    tarea2 = Tarea("Enviar correo electrónico", "Enviar recordatorio de reunión a todos los miembros del equipo", datetime.datetime(2024, 2, 15))
-    tarea3 = Tarea("Preparar presentación", "Preparar la presentación para el cliente", datetime.datetime(2024, 2, 25))
+sistema = SistemaGestionTareas()
 
-    sistema.agregar_tarea(tarea1)
-    sistema.agregar_tarea(tarea2)
-    sistema.agregar_tarea(tarea3)
+# Ejemplo de ingreso de tareas
+tarea1 = Tarea("Completar informe", "Redactar el informe mensual de ventas", datetime.datetime(2024, 2, 20))
+tarea2 = Tarea("Enviar correo electrónico", "Enviar recordatorio de reunión a todos los miembros del equipo", datetime.datetime(2024, 2, 15))
+tarea3 = Tarea("Preparar presentación", "Preparar la presentación para el cliente", datetime.datetime(2024, 2, 25))
 
-    # Mostrar tareas pendientes
-    sistema.mostrar_tareas_pendientes()
+sistema.agregar_tarea(tarea1)
+sistema.agregar_tarea(tarea2)
+sistema.agregar_tarea(tarea3)
 
-if __name__ == "__main__":
-    main()
+# Mostrar tareas pendientes
+sistema.mostrar_tareas_pendientes()
