@@ -1,0 +1,207 @@
+# PUNTO 1
+
+import datetime
+
+class Tarea:
+    def __init__(self, nombre, descripcion, fecha_vencimiento):
+        self.nombre = nombre
+        self.descripcion = descripcion
+        self.fecha_vencimiento = fecha_vencimiento
+
+class SistemaGestionTareas:
+    def __init__(self):
+        self.tareas = []
+
+    def agregar_tarea(self, tarea):
+        self.tareas.append(tarea)
+
+    def mostrar_tareas_pendientes(self):
+        print("Tareas pendientes:")
+        if not self.tareas:
+            print("No hay tareas pendientes.")
+        else:
+            for idx, tarea in enumerate(self.tareas, start=1):
+                print(f"Tarea {idx}:")
+                print(f"Nombre: {tarea.nombre}")
+                print(f"Descripción: {tarea.descripcion}")
+                print(f"Fecha de vencimiento: {tarea.fecha_vencimiento}")
+                print()
+
+
+sistema = SistemaGestionTareas()
+
+# Ejemplo de ingreso de tareas
+tarea1 = Tarea("Completar informe", "Redactar el informe mensual de ventas", datetime.datetime(2024, 2, 20))
+tarea2 = Tarea("Enviar correo electrónico", "Enviar recordatorio de reunión a todos los miembros del equipo", datetime.datetime(2024, 2, 15))
+tarea3 = Tarea("Preparar presentación", "Preparar la presentación para el cliente", datetime.datetime(2024, 2, 25))
+
+sistema.agregar_tarea(tarea1)
+sistema.agregar_tarea(tarea2)
+sistema.agregar_tarea(tarea3)
+
+# Mostrar tareas pendientes
+sistema.mostrar_tareas_pendientes()
+
+# PUNTO 2
+class Vehiculo:
+    def __init__(self, modelo, año, color):
+        self.__modelo = modelo
+        self.__año = año
+        self.__color = color
+
+    # Getter para el atributo modelo
+    def obtener_modelo(self):
+        return self.__modelo
+
+    # Setter para el atributo modelo
+    def establecer_modelo(self, modelo):
+        self.__modelo = modelo
+
+    # Getter para el atributo año
+    def obtener_año(self):
+        return self.__año
+
+    # Setter para el atributo año
+    def establecer_año(self, año):
+        self.__año = año
+
+    # Getter para el atributo color
+    def obtener_color(self):
+        return self.__color
+
+    # Setter para el atributo color
+    def establecer_color(self, color):
+        self.__color = color
+
+    def mostrar_informacion(self):
+        print(f"Modelo: {self.__modelo}")
+        print(f"Año: {self.__año}")
+        print(f"Color: {self.__color}")
+
+# Instanciación de dos objetos de la clase Vehiculo
+vehiculo1 = Vehiculo("Toyota Corolla", 2022, "Azul")
+vehiculo2 = Vehiculo("Honda Civic", 2020, "Rojo")
+
+# Mostrar información de los vehículos
+print("Información del vehículo 1:")
+vehiculo1.mostrar_informacion()
+print()
+
+print("Información del vehículo 2:")
+vehiculo2.mostrar_informacion()
+print()
+
+# Modificar atributos de un vehículo utilizando setters
+vehiculo1.establecer_color("Blanco")
+vehiculo2.establecer_año(2021)
+
+# Mostrar información actualizada de los vehículos
+print("Información actualizada del vehículo 1:")
+vehiculo1.mostrar_informacion()
+print()
+
+print("Información actualizada del vehículo 2:")
+vehiculo2.mostrar_informacion()
+
+
+# PUNTO 3
+import math
+
+class FiguraGeometrica:
+    def calcular_area(self):
+        pass
+
+    def calcular_perimetro(self):
+        pass
+
+class Circulo(FiguraGeometrica):
+    def __init__(self, radio):
+        self.__radio = radio
+
+    def obtener_radio(self):
+        return self.__radio
+
+    def establecer_radio(self, radio):
+        self.__radio = radio
+
+    def calcular_area(self):
+        return math.pi * self.__radio**2
+
+    def calcular_perimetro(self):
+        return 2 * math.pi * self.__radio
+
+class Rectangulo(FiguraGeometrica):
+    def __init__(self, base, altura):
+        self.__base = base
+        self.__altura = altura
+
+    def obtener_base(self):
+        return self.__base
+
+    def establecer_base(self, base):
+        self.__base = base
+
+    def obtener_altura(self):
+        return self.__altura
+
+    def establecer_altura(self, altura):
+        self.__altura = altura
+
+    def calcular_area(self):
+        return self.__base * self.__altura
+
+    def calcular_perimetro(self):
+        return 2 * (self.__base + self.__altura)
+
+# Instanciación de un círculo y un rectángulo
+circulo = Circulo(5)
+rectangulo = Rectangulo(4, 6)
+
+# Calcular área y perímetro de las figuras
+print("Círculo:")
+print("Área:", circulo.calcular_area())
+print("Perímetro:", circulo.calcular_perimetro())
+print()
+
+print("Rectángulo:")
+print("Área:", rectangulo.calcular_area())
+print("Perímetro:", rectangulo.calcular_perimetro())
+
+
+# PUNTO 4
+class Configuracion:
+    __instancia = None  # Variable privada para almacenar la instancia única
+
+    def __init__(self):
+        if Configuracion.__instancia is not None:
+            raise Exception("Esta clase es un Singleton, ya existe una instancia creada. Utilice obtener_instancia() para obtenerla.")
+        else:
+            Configuracion.__instancia = self
+            self.__opcion = None
+
+    @staticmethod
+    def obtener_instancia():
+        if Configuracion.__instancia is None:
+            Configuracion()
+        return Configuracion.__instancia
+
+    def obtener_opcion(self):
+        return self.__opcion
+
+    def establecer_opcion(self, opcion):
+        self.__opcion = opcion
+
+
+# Uso del Singleton en diferentes partes del programa
+configuracion1 = Configuracion.obtener_instancia()
+configuracion1.establecer_opcion("Opción 1")
+
+configuracion2 = Configuracion.obtener_instancia()
+print("Opción obtenida desde configuracion2:", configuracion2.obtener_opcion())
+
+# Intentar crear una nueva instancia generará una excepción
+try:
+    configuracion3 = Configuracion()
+except Exception as e:
+    print("Excepción:", e)
+
